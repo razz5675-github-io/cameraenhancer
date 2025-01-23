@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>AI Camera WebApp</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="camera-app">
+        <div class="camera-view">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas"></canvas>
+        </div>
+        <div class="controls">
+            <button id="capture" class="circle-btn">Capture</button>
+            <div class="filter-select">
+                <label for="filter">Filter:</label>
+                <select id="filter">
+                    <!-- Filter options will be dynamically added by JavaScript -->
+                </select>
+            </div>
+            <button id="save" class="circle-btn">Save</button>
+            <button id="enhance" class="circle-btn">Enhance</button>
+            <button id="toggleFullscreen" class="circle-btn">📺</button>
+            <button id="toggleFlash" class="circle-btn">🔦</button>
+            <button id="toggleZoom" class="circle-btn">🔍</button>
+            <button id="toggleCamera" class="circle-btn">📷</button>
+        </div>
+        <div class="permission-error" style="display: none;">
+            <p>Camera access is required. Please allow camera permissions.</p>
+            <button id="retryPermission" class="retry-btn">Retry</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

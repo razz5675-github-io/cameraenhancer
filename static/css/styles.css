@@ -1,0 +1,185 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #000;
+}
+
+.camera-app {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+
+.camera-view {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#video, #canvas {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+z-index: 1;
+}
+
+.controls {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: space-evenly;
+    padding: 10px 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+.circle-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease, transform 0.1s ease;
+}
+
+.circle-btn:hover {
+    background: #ddd;
+    transform: scale(1.05);
+}
+
+.circle-btn:active {
+    transform: scale(0.95);
+}
+
+.filter-select {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.filter-select label {
+    margin-right: 10px;
+    display: none;
+}
+
+.filter-select select {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 5px;
+    font-size: 14px;
+    width: 100px;
+    max-width: 60%;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.permission-error {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    animation: fadeIn 0.5s;
+}
+
+.retry-btn {
+    background-color: #4158D0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    transition: background-color 0.3s;
+}
+
+.retry-btn:hover {
+    background-color: #5B6FE5;
+}
+
+.filter-toggle {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 1001;
+    display: none; /* Default to hidden on larger screens */
+}
+
+@media (orientation: portrait) {
+    .camera-app {
+        background: #000;
+    }
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-wrap: wrap; /* Allow controls to wrap on smaller screens */
+    }
+    .filter-select {
+        display: none;  /* Hidden by default on mobile */
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+    }
+    .filter-toggle {
+        display: block;
+    }
+    .circle-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 601px) {
+    .filter-select {
+        display: flex; /* Show on larger screens */
+    }
+    .filter-toggle {
+        display: none;
+    }
+    .camera-app {
+        max-width: 800px;
+        max-height: calc(100vh - 40px);
+        margin: 20px auto;
+        border-radius: 20px;
+    }
+    .controls {
+        justify-content: space-around;
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 0 0 20px 20px;
+    }
+    .filter-select label {
+        display: inline;
+    }
+}
